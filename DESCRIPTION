@@ -1,0 +1,16 @@
+Package: TransportUtils
+Type: Package
+Title: Utilities for statistical modelling of road traffic syste,s
+Version: 0.1.0
+Author: Who wrote it
+Maintainer: The package maintainer <yourself@somewhere.net>
+Description: This package automatically abstracts a real road network to a format suitable for applying statistical network tomography tools.
+License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
+    license
+Depends:
+    igraph,
+    dodgr,
+    sf
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 7.1.2
