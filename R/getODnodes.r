@@ -28,19 +28,15 @@
 #'
 #' @export
 
-getODnodes <- function(network, ODdata){
-  oxford.o <- unique(cbind(ODdata$fx, ODdata$fy))
-  oxford.d <- unique(cbind(ODdata$tx, ODdata$ty))
-
-  mainnodes <- dodgr_vertices(network)
-  mainnodes$nodeID <- mainnodes$n  # NB numbering starts at zero
-  mainnodes <- mainnodes[, c(1, 2, 3, 6)]
-  tmp <- match_points_to_graph(mainnodes,
-                               data.frame(x = oxford.o[, 1], y = oxford.o[, 2]),
-                               connected=FALSE)
-
-  ODnodes <- mainnodes[tmp, ]
-  ODnodes$true.x <- oxford.o[, 1]
-  ODnodes$true.y <- oxford.o[, 2]
-  return(list(ODnodes, mainnodes))
+getODnodes <-function (network, ODdata) {
+    netnodes <- rbind(unique(cbind(ODdata$fx, ODdata$fy)),unique(cbind(ODdata$tx, ODdata$ty)))
+    mainnodes <- dodgr_vertices(network)
+    mainnodes$nodeID <- mainnodes$n
+    mainnodes <- mainnodes[, c(1, 2, 3, 6)]
+    tmp <- match_points_to_verts(mainnodes, data.frame(x = netnodes[,1], y = netnodes[,2]), connected = FALSE)
+    ODnodes <- mainnodes[tmp, ]
+    ODnodes$true.x <- netnodes[, 1]
+    ODnodes$true.y <- netnodes[, 2]
+    return(list(ODnodes, mainnodes))
 }
+
